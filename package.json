@@ -1,0 +1,27 @@
+{
+  "name": "scrypta-shamir-secret",
+  "version": "1.0.0",
+  "description": "Implementation of Schamir's Secret Sharing for Scrypta",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js --ignore 'db/*' --ignore 'backups/*'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scryptachain/scrypta-shamir-secret.git"
+  },
+  "author": "Scrypta Foundation",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/scryptachain/scrypta-shamir-secret/issues"
+  },
+  "homepage": "https://github.com/scryptachain/scrypta-shamir-secret#readme",
+  "dependencies": {
+    "@scrypta/core": "^1.8.4",
+    "secrets.js-grempe": "^2.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
