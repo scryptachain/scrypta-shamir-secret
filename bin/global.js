@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 const chalk = require('chalk')
-const clear = require('clear')
 const figlet = require('figlet')
 var ScryptaSSS = require('../lib/index.js')
 var args = process.argv.splice(process.execArgv.length + 2)
