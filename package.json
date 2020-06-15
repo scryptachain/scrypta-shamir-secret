@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/scryptachain/scrypta-shamir-secret#readme",
   "dependencies": {
-    "@scrypta/core": "^1.8.5",
+    "@scrypta/core": "^1.8.6",
     "better-console": "^1.0.1",
     "chalk": "^4.1.0",
     "figlet": "^1.4.0",
