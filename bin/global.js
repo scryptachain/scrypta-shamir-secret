@@ -14,26 +14,24 @@ async function init(){
         )
     )
 
-    switch(command){
-        
-        case "create":
-            const params = await inquirer.askCreateParams();
-            const { shares, threshold, password } = params;
-            ScryptaSSS.create(shares, threshold, password)
-        break;
-
-        case "restore":
-            let path = './'
-            if(args[1].indexOf('--path=') !== -1){
-                path = args[1].replace('--path=','')
-            }
-            let restorePassword = ''
-            if(args[2].indexOf('--password=') !== -1){
-                restorePassword = args[2].replace('--password=','')
-            }
-            ScryptaSSS.restore(path, restorePassword)
-        break;
-
+    if(command === 'create'){
+        let params = await inquirer.askCreateParams();
+        let { shares, threshold, password } = params;
+        ScryptaSSS.create(shares, threshold, password)
+    }else if(command === 'secure'){
+        const params = await inquirer.askSecureData();
+        let { data, shares, threshold, password } = params;
+        ScryptaSSS.secure(data, shares, threshold, password)
+    }else if(command === 'restore'){
+        let path = './'
+        if(args[1].indexOf('--path=') !== -1){
+            path = args[1].replace('--path=','')
+        }
+        let restorePassword = ''
+        if(args[2] !== undefined && args[2].indexOf('--password=') !== -1){
+            restorePassword = args[2].replace('--password=','')
+        }
+        ScryptaSSS.restore(path, restorePassword)
     }
 }
 
