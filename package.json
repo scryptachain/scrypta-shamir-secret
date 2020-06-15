@@ -1,11 +1,17 @@
 {
-  "name": "scrypta-shamir-secret",
-  "version": "1.0.0",
-  "description": "Implementation of Schamir's Secret Sharing for Scrypta",
-  "main": "index.js",
+  "name": "@scrypta/shamir",
+  "version": "1.0.1",
+  "description": "Implementation of Schamir's Secret Sharing for Scrypta Wallets",
+  "main": "./lib/index.js",
+  "private": false,
+  "bin": {
+    "scrypta-shamir": "./bin/global.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js --ignore 'db/*' --ignore 'backups/*'"
+    "dev": "nodemon ./lib/index.js --ignore 'db/*' --ignore 'backups/*'",
+    "pub": "npm publish --access public",
+    "install": "sudo npm install -g"
   },
   "repository": {
     "type": "git",
@@ -19,6 +25,11 @@
   "homepage": "https://github.com/scryptachain/scrypta-shamir-secret#readme",
   "dependencies": {
     "@scrypta/core": "^1.8.4",
+    "better-console": "^1.0.1",
+    "chalk": "^4.1.0",
+    "clear": "^0.1.0",
+    "figlet": "^1.4.0",
+    "inquirer": "^7.2.0",
     "secrets.js-grempe": "^2.0.0"
   },
   "devDependencies": {
