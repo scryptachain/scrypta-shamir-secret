@@ -5,7 +5,7 @@ var ScryptaSSS = require('../lib/index.js')
 var args = process.argv.splice(process.execArgv.length + 2)
 var command = args[0];
 const console = require('better-console')
-const inquirer  = require('../lib/inquirer.js')
+const inquirer = require('../lib/inquirer.js')
 
 async function init(){
     console.log(
@@ -18,15 +18,7 @@ async function init(){
         
         case "create":
             const params = await inquirer.askCreateParams();
-            let shares = parseFloat(params.shares)
-            if(isNaN(shares)){
-                shares = 10
-            }
-            let threshold = parseFloat(params.threshold)
-            if(isNaN(threshold)){
-                threshold = 5
-            }
-            let password = params.password
+            const { shares, threshold, password } = params;
             ScryptaSSS.create(shares, threshold, password)
         break;
 
