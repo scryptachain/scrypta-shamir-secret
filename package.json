@@ -1,7 +1,7 @@
 {
   "name": "@scrypta/shamir",
-  "version": "1.0.3",
-  "description": "Implementation of Schamir's Secret Sharing for Scrypta Wallets",
+  "version": "1.0.4",
+  "description": "Implementation of Shamir's Secret Sharing for Scrypta Wallets",
   "main": "./lib/index.js",
   "private": false,
   "bin": {
@@ -28,6 +28,8 @@
     "chalk": "^4.1.0",
     "figlet": "^1.4.0",
     "inquirer": "^7.2.0",
+    "pdfkit": "^0.11.0",
+    "qrcode": "^1.4.4",
     "secrets.js-grempe": "^2.0.0"
   },
   "devDependencies": {
