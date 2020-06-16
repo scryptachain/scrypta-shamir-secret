@@ -1,6 +1,6 @@
 {
   "name": "@scrypta/shamir",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Implementation of Shamir's Secret Sharing for Scrypta Wallets",
   "main": "./lib/index.js",
   "private": false,
