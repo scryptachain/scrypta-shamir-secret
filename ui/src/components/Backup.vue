@@ -107,7 +107,6 @@
         doc.end()
         stream.on('finish', function() {
           const blob = stream.toBlob('application/pdf');
-          console.log(blob)
           const url = stream.toBlobURL('application/pdf');
           window.location = url;
         })
