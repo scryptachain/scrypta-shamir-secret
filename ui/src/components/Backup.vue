@@ -14,11 +14,14 @@
         </div>
       </div>
       <b-field label="Write a secret to backup">
-        <b-input v-model="dataToBackup"></b-input>
+        <b-input type="password" v-model="dataToBackup"></b-input>
       </b-field>
       <b-field label="Write a password to encrypt the data (optional)">
         <b-input type="password" v-model="encryptPassword"></b-input>
       </b-field>
+      <hr>
+        <h1>You will create {{ shares }} shares and you'll need {{ threshold }} of them to recover the secret.</h1>
+      <hr>
       <b-button v-on:click="backupData" type="is-primary" expanded size="is-large">CREATE BACKUP</b-button>
     </div>
     <div v-if="results.length > 0">

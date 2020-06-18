@@ -1,6 +1,13 @@
 <template>
   <div id="app">
-    <div v-if="!isLogging">
+    <offline @detected-condition="handleConnectivityChange"></offline>
+    <div v-if="isOnline" style="padding:40vh 20px;">
+      <img src="/logo.png" style="width:50px;">
+      <h1>Scrypta Shamir Backup</h1>
+      <p>It seems you're online, please turn off your connection<br>or put the device in airplane mode to continue.</p>
+      <b-icon style="opacity:0" icon="home" size="is-medium"></b-icon>
+    </div>
+    <div v-if="!isOnline">
       <b-navbar>
         <template slot="brand">
           <b-navbar-item tag="router-link" :to="{ path: '/' }">
@@ -23,20 +30,23 @@
       <br />
       <br />
     </div>
-
-    <b-loading :is-full-page="true" :active.sync="isLogging" :can-cancel="false"></b-loading>
   </div>
 </template>
 
 <script>
 let ScryptaCore = require("@scrypta/core");
+import offline from 'v-offline';
 
 export default {
+  components: {
+    offline
+  },
   data() {
     return {
       scrypta: new ScryptaCore(true),
       address: "",
       wallet: "",
+      isOnline: true,
       isLogging: true,
       file: [],
       isCreating: false,
@@ -180,6 +190,9 @@ export default {
           }
         }
       })
+    },
+    handleConnectivityChange(status) {
+      this.isOnline = status
     }
   }
 };
