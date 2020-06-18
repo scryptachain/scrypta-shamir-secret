@@ -1,13 +1,12 @@
 <template>
   <div id="app">
-    <offline @detected-condition="handleConnectivityChange"></offline>
-    <div v-if="isOnline" style="padding:40vh 20px;">
+    <div v-if="isConnected" style="padding:40vh 20px;">
       <img src="/logo.png" style="width:50px;">
       <h1>Scrypta Shamir Backup</h1>
       <p>It seems you're online, please turn off your connection<br>or put the device in airplane mode to continue.</p>
       <b-icon style="opacity:0" icon="home" size="is-medium"></b-icon>
     </div>
-    <div v-if="!isOnline">
+    <div v-if="!isConnected">
       <b-navbar>
         <template slot="brand">
           <b-navbar-item tag="router-link" :to="{ path: '/' }">
@@ -35,18 +34,16 @@
 
 <script>
 let ScryptaCore = require("@scrypta/core");
-import offline from 'v-offline';
-
+const axios = require('axios')
 export default {
-  components: {
-    offline
-  },
   data() {
     return {
       scrypta: new ScryptaCore(true),
       address: "",
       wallet: "",
-      isOnline: true,
+      isConnecting: false,
+      isConnected: true,
+      axios: axios,
       isLogging: true,
       file: [],
       isCreating: false,
@@ -74,6 +71,10 @@ export default {
     } else {
       app.isLogging = false;
     }
+    app.check_online_status()
+    setInterval(function(){
+      app.check_online_status()
+    },5000)
   },
   methods: {
     loadWalletFromFile() {
@@ -191,9 +192,22 @@ export default {
         }
       })
     },
-    handleConnectivityChange(status) {
-      this.isOnline = status
-    }
+    async check_online_status() {
+      const app = this
+      try {
+        app.isConnecting = true
+        let check = await app.axios.get('https://idanodejs01.scryptachain.org/wallet/getinfo')
+        if(check.data.blocks !== undefined){
+          app.isConnected = true
+        }else{
+          app.isConnected = false
+        }
+        app.isConnecting = false
+      }catch(e){
+        app.isConnected = false
+        app.isConnecting = false
+      }
+    },
   }
 };
 </script>
