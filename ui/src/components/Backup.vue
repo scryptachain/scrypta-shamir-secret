@@ -1,10 +1,11 @@
 <template>
   <div class="hello">
     <div v-if="results.length === 0">
+      <h3>Tune backup's settings</h3>
       <div class="columns">
         <div class="column">
           <b-field label="Shares">
-            <b-numberinput v-model="shares" min="3"></b-numberinput>
+            <b-numberinput v-model="shares" min="3" max="100"></b-numberinput>
           </b-field>
         </div>
         <div class="column">
@@ -13,15 +14,23 @@
           </b-field>
         </div>
       </div>
-      <b-field label="Write a secret to backup">
-        <b-input type="password" v-model="dataToBackup"></b-input>
-      </b-field>
+      <h3>Choose what to backup</h3>
+      <div v-if="!isWallet">
+        <b-button v-if="wallet" type="is-primary" v-on:click="backupWallet" expanded size="is-large">BACKUP WALLET</b-button>
+        <div v-if="wallet" style="position:relative">
+          <hr>
+          <div style="background:#fff; padding:5px; width:30px; height:35px; z-index:19; position:absolute; left:50%; margin-left:-10px; top:-16px;">or</div>
+        </div>
+        <b-field label="Write a secret to backup">
+          <b-input type="password" v-model="dataToBackup"></b-input>
+        </b-field>
+      </div>
+      <div v-if="isWallet">You're creating a backup for your address <b>{{ address }}</b></div>
+      <hr>
+      <h3>Add extra security passphrase</h3>
       <b-field label="Write a password to encrypt the data (optional)">
         <b-input type="password" v-model="encryptPassword"></b-input>
       </b-field>
-      <hr>
-        <h1>You will create {{ shares }} shares and you'll need {{ threshold }} of them to recover the secret.</h1>
-      <hr>
       <b-button v-on:click="backupData" type="is-primary" expanded size="is-large">CREATE BACKUP</b-button>
     </div>
     <div v-if="results.length > 0">
@@ -47,6 +56,9 @@
   </div>
 </template>
 
+<style>
+  h3{ font-weight:bold; font-size:18px; margin-bottom:20px;}
+</style>
 
 <script>
   let ScryptaCore = require('@scrypta/core')
@@ -62,12 +74,26 @@
         scrypta: new ScryptaCore(true),
         address: '',
         wallet: '',
-        isWriting: false,
+        isWallet: false,
         encryptPassword: '',
         dataToBackup: '',
         shares: 10, 
         threshold: 5,
         results: []
+      }
+    },
+    async mounted() {
+      const app = this;
+      app.wallet = await app.scrypta.importBrowserSID();
+      app.wallet = await app.scrypta.returnDefaultIdentity();
+      if (app.wallet.length > 0) {
+        let SIDS = app.wallet.split(":");
+        app.address = SIDS[0];
+        let identity = await app.scrypta.returnIdentity(app.address);
+        app.wallet = identity
+        app.isLogging = false;
+      } else {
+        app.isLogging = false;
       }
     },
     methods: {
@@ -89,6 +115,28 @@
             type: "is-danger"
           })
         }
+      },
+      backupWallet(){
+        const app = this
+        app.$buefy.dialog.prompt({
+          message: `Enter wallet password`,
+          inputAttrs: {
+            type: "password"
+          },
+          trapFocus: true,
+          onConfirm: async password => {
+            let key = await app.scrypta.readKey(password, app.wallet.wallet)
+            if (key !== false) {
+              app.isWallet = true
+              app.dataToBackup = key.prv
+            } else {
+              app.$buefy.toast.open({
+                message: "Wrong password!",
+                type: "is-danger"
+              });
+            }
+          }
+        });
       },
       async downloadPdf(){
         const app = this

@@ -16,6 +16,7 @@
         <template slot="start">
           <b-navbar-item href="/#/">Create</b-navbar-item>
           <b-navbar-item href="/#/recover">Recover</b-navbar-item>
+          <b-navbar-item v-if="!wallet" href="/#/login">Login</b-navbar-item>
         </template>
       </b-navbar>
       <router-view />
