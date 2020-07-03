@@ -1,9 +1,36 @@
 <template>
   <div id="app">
-    <div v-if="isConnected" style="padding:40vh 20px;">
-      <img src="/logo.png" style="width:50px;">
+    <div v-if="isConnected">
+      <section class="section " style="background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.3), rgba(117, 19, 93, 0.4)), url('main-bg.jpg'); height: 100vh; padding: 0px;">
+        <div class="columns">
+          <div class="column is-4 is-offset-1 text-left" style="padding: 40vh 20px;">
+            <img src="/shamir-logo.png" style="width: 50%;">
+            <h1 style="color: white; font-size:46px; padding-top: 40px;">Scrypta Shamir Backup</h1>
+            <p style="font-size: 28px; color: white"><i>"sit back and relax with your secret."</i></p>
+          </div>
+        </div>
+      </section>
+      <section class="section" id="bghome">
+        <div class="columns" style="padding-top:100px;">
+          <div class="column is-4 is-offset-1" style="text-align: left; padding-top: 100px;">
+            <h1>Splitting the Secret</h1><br>
+            <p
+              style="text-align: justify;"
+            >Based on Shamir’s Secret Sharing, a cryptographic algorithm created by Adi Shamir, Scrypta Shamir Backup is a method of splitting a secret (in digital text form) into multiple unique shares. To recover the secret, a specified number of shares has to be collected and used. This security standard is the key to defeat the two greatest risks involved with protecting your seeds / passphrase / private-keys: theft and destruction. Start now with the extra security of Scrypta Shamir Backup!</p>
+          </div>
+          <div class="column is-5 is-offset-1">
+            <img src="/secret.png" />
+          </div>
+        </div>
+      </section>
+
+      <img src="/logo.png" style="width:50px;" />
       <h1>Scrypta Shamir Backup</h1>
-      <p>It seems you're online, please turn off your connection<br>or put the device in airplane mode to continue.</p>
+      <p>
+        It seems you're online, please turn off your connection
+        <br />or put the device in airplane mode to continue.
+      </p>
+
       <b-icon style="opacity:0" icon="home" size="is-medium"></b-icon>
     </div>
     <div v-if="!isConnected">
@@ -35,7 +62,7 @@
 
 <script>
 let ScryptaCore = require("@scrypta/core");
-const axios = require('axios')
+const axios = require("axios");
 export default {
   data() {
     return {
@@ -64,18 +91,22 @@ export default {
       app.address = SIDS[0];
       let identity = await app.scrypta.returnIdentity(app.address);
       app.wallet = identity;
-      let check_backup = localStorage.getItem('sid_backup')
-      if(check_backup !== null && check_backup !== undefined && check_backup === app.address){
-        app.backup = true
+      let check_backup = localStorage.getItem("sid_backup");
+      if (
+        check_backup !== null &&
+        check_backup !== undefined &&
+        check_backup === app.address
+      ) {
+        app.backup = true;
       }
       app.isLogging = false;
     } else {
       app.isLogging = false;
     }
-    app.check_online_status()
-    setInterval(function(){
-      app.check_online_status()
-    },5000)
+    app.check_online_status();
+    setInterval(function() {
+      app.check_online_status();
+    }, 5000);
   },
   methods: {
     loadWalletFromFile() {
@@ -95,9 +126,9 @@ export default {
             let key = await app.scrypta.readKey(password, dataKey);
             if (key !== false) {
               app.scrypta.importPrivateKey(key.prv, password);
-              localStorage.setItem("SID", dataKey)
-              let exp = dataKey.split(':')
-              localStorage.setItem("sid_backup", exp[0])
+              localStorage.setItem("SID", dataKey);
+              let exp = dataKey.split(":");
+              localStorage.setItem("sid_backup", exp[0]);
               location.reload();
             } else {
               app.$buefy.toast.open({
@@ -157,8 +188,8 @@ export default {
         });
       }
     },
-    downloadBackup(){
-      const app = this
+    downloadBackup() {
+      const app = this;
       app.$buefy.dialog.prompt({
         message: `Enter wallet password`,
         inputAttrs: {
@@ -166,16 +197,13 @@ export default {
         },
         trapFocus: true,
         onConfirm: async password => {
-          let SID = localStorage.getItem('SID')
+          let SID = localStorage.getItem("SID");
           let key = await app.scrypta.readKey(password, SID);
           if (key !== false) {
             var a = document.getElementById("downloadid");
-            app.backup = true
-            localStorage.setItem('sid_backup', app.address)
-            var file = new Blob(
-              [SID],
-              { type: "sid" }
-            );
+            app.backup = true;
+            localStorage.setItem("sid_backup", app.address);
+            var file = new Blob([SID], { type: "sid" });
             a.href = URL.createObjectURL(file);
             a.download = app.address + ".sid";
             var clickEvent = new MouseEvent("click", {
@@ -184,54 +212,60 @@ export default {
               cancelable: false
             });
             a.dispatchEvent(clickEvent);
-          }else{
+          } else {
             app.$buefy.toast.open({
               message: "Wrong password!",
               type: "is-danger"
             });
           }
         }
-      })
+      });
     },
     async check_online_status() {
-      const app = this
+      const app = this;
       try {
-        app.isConnecting = true
-        let check = await app.axios.get('https://idanodejs01.scryptachain.org/wallet/getinfo')
-        if(check.data.blocks !== undefined){
-          app.isConnected = true
-        }else{
-          app.isConnected = false
+        app.isConnecting = true;
+        let check = await app.axios.get(
+          "https://idanodejs01.scryptachain.org/wallet/getinfo"
+        );
+        if (check.data.blocks !== undefined) {
+          app.isConnected = true;
+        } else {
+          app.isConnected = false;
         }
-        app.isConnecting = false
-      }catch(e){
-        app.isConnected = false
-        app.isConnecting = false
+        app.isConnecting = false;
+      } catch (e) {
+        app.isConnected = false;
+        app.isConnecting = false;
       }
-    },
+    }
   }
 };
 </script>
 
 <style>
-  #app {
-    font-family: "Sen";
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-  }
+#app {
+  font-family: "Sen";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  background-image: url("/home-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+}
 
-  #nav {
-    padding: 30px;
-  }
+#nav {
+  padding: 30px;
+}
 
-  #nav a {
-    font-weight: bold;
-    color: #2c3e50;
-  }
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
 
-  #nav a.router-link-exact-active {
-    color: #42b983;
-  }
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
 </style>
