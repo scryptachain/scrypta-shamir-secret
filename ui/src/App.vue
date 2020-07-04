@@ -52,7 +52,7 @@
       <section class="section">
         <div class="columns" style="padding-top:100px; display: flex; justify-content: center;">
           <div class="column is-5">
-            <img src="/sharesecret1.png"/>
+            <img src="/sharesecret1.png" />
           </div>
           <div class="column is-4 is-offset-1" style="text-align: left; padding-top: 60px;">
             <h1 style="font-size: 40px;">CREATE</h1>
@@ -91,20 +91,51 @@
             <h1 style="font-size: 40px; color: white;">RELAX</h1>
             <br />
             <p style="text-align: justify; font-size: 22px; color: white;">
-              Relax now knowing that your “secrets” are secured by Scrypta Shamir Backup.<br><br>
-              <i>(*) The number of shares can range from 1 to a maximum of 100.
-              The threshold is the predetermined number of shares necessary to recover a secret.</i>
+              Relax now knowing that your “secrets” are secured by Scrypta Shamir Backup.
+              <br />
+              <br />
+              <i>
+                (*) The number of shares can range from 1 to a maximum of 100.
+                The threshold is the predetermined number of shares necessary to recover a secret.
+              </i>
             </p>
           </div>
         </div>
       </section>
 
-            <section class="section" style="padding-top: 100px">
+      <section class="section" style="padding-top: 100px">
         <h1 class="align-text: center" style="font-size: 50px;">Trustworthy application</h1>
-        <div class="columns">
-          <div class="column is-4"></div>
-          <div class="column is-4"></div>
-          <div class="column is-4"></div>
+        <div class="columns" style="margin-top: 100px;">
+          <div class="column is-3 is-offset-1">
+            <div class="box box-shadow">
+              <div class="media-center">
+                <img src="/no-wifi.png" />
+              </div>
+              <div class="media-content">
+                <br />This web dApp works only on offline mode to prevent any leak of information.
+              </div>
+            </div>
+          </div>
+          <div class="column is-3">
+            <div class="box box-shadow">
+              <div class="media-center">
+                <img src="/shield.png" />
+              </div>
+              <div class="media-content">
+                <br />Secure offline backup of recovery shares.
+              </div>
+            </div>
+          </div>
+          <div class="column is-3">
+            <div class="box box-shadow">
+              <div class="media-center">
+                <img src="/thief.png" />
+              </div>
+              <div class="media-content">
+                <br />Eliminated risk of theft or loss.
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
