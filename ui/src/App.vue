@@ -1,22 +1,35 @@
 <template>
   <div id="app">
     <div v-if="isConnected">
-      <section class="section " style="background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.3), rgba(117, 19, 93, 0.4)), url('main-bg.jpg'); height: 100vh; padding: 0px;">
+      <section
+        class="section"
+        style="background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.3), rgba(117, 19, 93, 0.4)), url('main-bg.jpg'); height: 100vh; padding: 0px;"
+      >
         <div class="columns">
           <div class="column is-4 is-offset-1 text-left" style="padding: 40vh 20px;">
-            <img src="/shamir-logo.png" style="width: 50%;">
+            <img src="/shamir-logo.png" style="width: 50%;" />
             <h1 style="color: white; font-size:46px; padding-top: 40px;">Scrypta Shamir Backup</h1>
-            <p style="font-size: 28px; color: white"><i>"sit back and relax with your secret."</i></p>
+            <p style="font-size: 28px; color: white">
+              <i>"sit back and relax with your secret."</i>
+            </p>
           </div>
         </div>
       </section>
+      <div class="notification is-warning" id="turnoff" style="font-size: 22px;">
+        It seems you're online, please turn off your connection
+        <br />or put the device in
+        <strong>airplane mode</strong> to continue.
+      </div>
       <section class="section" id="bghome">
-        <div class="columns" style="padding-top:100px;">
-          <div class="column is-4 is-offset-1" style="text-align: left; padding-top: 100px;">
-            <h1>Splitting the Secret</h1><br>
-            <p
-              style="text-align: justify;"
-            >Based on Shamir’s Secret Sharing, a cryptographic algorithm created by Adi Shamir, Scrypta Shamir Backup is a method of splitting a secret (in digital text form) into multiple unique shares. To recover the secret, a specified number of shares has to be collected and used. This security standard is the key to defeat the two greatest risks involved with protecting your seeds / passphrase / private-keys: theft and destruction. Start now with the extra security of Scrypta Shamir Backup!</p>
+        <div class="columns" style="padding-top:100px; display: flex; justify-content: center;">
+          <div class="column is-4 is-offset-1" style="text-align: left; padding-top: 60px;">
+            <h1 style="font-size: 40px;">Splitting the Secret</h1>
+            <br />
+            <p style="text-align: justify; font-size: 22px; ">
+              Based on Shamir’s Secret Sharing, a cryptographic algorithm created by Adi Shamir, Scrypta Shamir Backup is a method of splitting a secret (in digital text form) into multiple unique shares.
+              <br />
+              <br />To recover the secret, a specified number of shares has to be collected and used. This security standard is the key to defeat the two greatest risks involved with protecting your seeds / passphrase / private-keys: theft and destruction. Start now with the extra security of Scrypta Shamir Backup!
+            </p>
           </div>
           <div class="column is-5 is-offset-1">
             <img src="/secret.png" />
@@ -24,12 +37,76 @@
         </div>
       </section>
 
-      <img src="/logo.png" style="width:50px;" />
-      <h1>Scrypta Shamir Backup</h1>
-      <p>
-        It seems you're online, please turn off your connection
-        <br />or put the device in airplane mode to continue.
-      </p>
+      <section class="section" style="padding-top: 100px">
+        <h1 class="align-text: center" style="font-size: 50px;">How to use</h1>
+        <p>
+          <i>Three simple step to create, share and keep safe your secrets.</i>
+        </p>
+        <div class="columns">
+          <div class="column is-4"></div>
+          <div class="column is-4"></div>
+          <div class="column is-4"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="columns" style="padding-top:100px; display: flex; justify-content: center;">
+          <div class="column is-5">
+            <img src="/sharesecret1.png"/>
+          </div>
+          <div class="column is-4 is-offset-1" style="text-align: left; padding-top: 60px;">
+            <h1 style="font-size: 40px;">CREATE</h1>
+            <br />
+            <p style="text-align: justify; font-size: 22px; ">
+              Turn off your connection or put the device in airplane mode. Write your secret.
+              <br />
+              <br />Choose how many recovery shares you want to generate, and decide how many of them you want to use for recovery (*).
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="columns" style="padding-top:100px; display: flex; justify-content: center;">
+          <div class="column is-4" style="text-align: left; padding-top: 60px;">
+            <h1 style="font-size: 40px;">SHARE</h1>
+            <br />
+            <p
+              style="text-align: justify; font-size: 22px; "
+            >Distribute those shares however you want, among people or secure locations.</p>
+          </div>
+          <div class="column is-5 is-offset-1">
+            <img src="/secret-share.png" />
+          </div>
+        </div>
+      </section>
+      <section
+        class="section"
+        style="background: linear-gradient(to right, #ff0066 0%, #000099 100%);"
+      >
+        <div class="columns" style="padding-top:100px; display: flex; justify-content: center;">
+          <div class="column is-5">
+            <img src="/relax.png" />
+          </div>
+          <div class="column is-4 is-offset-1" style="text-align: left; padding-top: 60px;">
+            <h1 style="font-size: 40px; color: white;">RELAX</h1>
+            <br />
+            <p style="text-align: justify; font-size: 22px; color: white;">
+              Relax now knowing that your “secrets” are secured by Scrypta Shamir Backup.<br><br>
+              <i>(*) The number of shares can range from 1 to a maximum of 100.
+              The threshold is the predetermined number of shares necessary to recover a secret.</i>
+            </p>
+          </div>
+        </div>
+      </section>
+
+            <section class="section" style="padding-top: 100px">
+        <h1 class="align-text: center" style="font-size: 50px;">Trustworthy application</h1>
+        <div class="columns">
+          <div class="column is-4"></div>
+          <div class="column is-4"></div>
+          <div class="column is-4"></div>
+        </div>
+      </section>
 
       <b-icon style="opacity:0" icon="home" size="is-medium"></b-icon>
     </div>
@@ -267,5 +344,9 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+#turnoff {
+  position: sticky;
+  top: 0px;
 }
 </style>
