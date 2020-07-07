@@ -83,7 +83,7 @@
             <p style="text-align: justify; font-size: 22px; ">
               Turn off your connection or put the device in airplane mode. Write your secret.
               <br />
-              <br />Choose how many recovery shares you want to generate, and decide how many of them you want to use for recovery (*).
+              <br />Choose how many recovery shares you want to generate, and decide how many of them you want to use for recovery.
             </p>
           </div>
         </div>
@@ -124,7 +124,7 @@
               <br />
               <br />
               <i>
-                (*) The number of shares can range from 1 to a maximum of 100.
+                The number of shares can range from 1 to a maximum of 100.
                 The threshold is the predetermined number of shares necessary to recover a secret.
               </i>
             </p>
