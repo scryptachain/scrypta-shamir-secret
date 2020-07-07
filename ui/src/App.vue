@@ -1,27 +1,49 @@
 <template>
   <div id="app">
     <div v-if="isConnected">
+      <!-- desktop section!-->
       <section
-        class="section"
-        style="background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.3), rgba(117, 19, 93, 0.4)), url('main-bg.jpg'); height: 100vh; padding: 0px;"
+        class="section desksection"
+        style="background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.3), rgba(117, 19, 93, 0.4)), url('main-bg.jpg'); width: auto; height: 100vh; background-repeat: no-repeat;
+    background-size: cover; padding: 0px;"
       >
-        <div class="columns">
+        <div class="columns is-vcentered">
           <div class="column is-4 is-offset-1 text-left" style="padding: 40vh 20px;">
             <img src="/shamir-logo.png" style="width: 50%;" />
-            <h1 style="color: white; font-size:46px; padding-top: 40px;">Scrypta Shamir Backup</h1>
+            <h1 class="title is-1" style="color: white; padding-top: 40px;">Scrypta Shamir Backup</h1>
             <p style="font-size: 28px; color: white">
               <i>"sit back and relax with your secret."</i>
             </p>
           </div>
         </div>
       </section>
+      <!-- desktop section!-->
+
+      <!-- mobile section!-->
+      <section
+        class="section mobilesection"
+        style="background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.3), rgba(117, 19, 93, 0.4)), url('main-bg.jpg'); width: 100%; height: 50vh; background-repeat: no-repeat;
+    background-size: cover; padding: 0px;"
+      >
+        <div class="columns is-vcentered">
+          <div class="column is-4 is-offset-1 text-center" style="padding: 5vh;  20px;">
+            <img src="/shamir-logo.png" style="width: 50%;" />
+            <h1 class="title is-1" style="color: white; padding-top: 40px;">Scrypta Shamir Backup</h1>
+            <p style="font-size: 28px; color: white">
+              <i>"sit back and relax with your secret."</i>
+            </p>
+          </div>
+        </div>
+      </section>
+      <!-- mobile section!-->
+
       <div class="notification is-warning" id="turnoff" style="font-size: 22px;">
         It seems you're online, please turn off your connection
         <br />or put the device in
-        <strong>airplane mode</strong> to continue.
+        <strong>airplane mode</strong> to continue. Wait a few seconds!
       </div>
       <section class="section" id="bghome">
-        <div class="columns" style="padding-top:100px; display: flex; justify-content: center;">
+        <div class="columns is-vcentered" style="padding-top:100px; justify-content: center;">
           <div class="column is-4 is-offset-1" style="text-align: left; padding-top: 60px;">
             <h1 style="font-size: 40px;">Splitting the Secret</h1>
             <br />
@@ -38,21 +60,22 @@
       </section>
 
       <section class="section" style="padding-top: 100px">
-        <h1 class="align-text: center" style="font-size: 50px;">How to use</h1>
-        <p>
-          <i>Three simple step to create, share and keep safe your secrets.</i>
+        <h1 class="title is-1 text-center" style="font-size: 50px;">How to use</h1>
+        <p class="subtitle is-3">
+          <i>
+            Three simple step to create, share
+            <br />and keep safe your secrets.
+          </i>
         </p>
-        <div class="columns">
-          <div class="column is-4"></div>
-          <div class="column is-4"></div>
-          <div class="column is-4"></div>
-        </div>
       </section>
 
       <section class="section">
-        <div class="columns" style="padding-top:100px; display: flex; justify-content: center;">
+        <div
+          class="columns id-desktop is-vcentered"
+          style="padding-top:100px; justify-content: center;"
+        >
           <div class="column is-5">
-            <img src="/sharesecret1.png" />
+            <img src="/secret-share.png" style="width: 120%" />
           </div>
           <div class="column is-4 is-offset-1" style="text-align: left; padding-top: 60px;">
             <h1 style="font-size: 40px;">CREATE</h1>
@@ -65,17 +88,20 @@
           </div>
         </div>
       </section>
-      <section class="section">
-        <div class="columns" style="padding-top:100px; display: flex; justify-content: center;">
-          <div class="column is-4" style="text-align: left; padding-top: 60px;">
+      <section class="section" style="margin-bottom: 80px;">
+        <div
+          class="columns is-desktop is-vcentered"
+          style="padding-top:100px; justify-content: center;"
+        >
+          <div class="column is-3 is-offset-1" style="text-align: left; padding-top: 60px;">
             <h1 style="font-size: 40px;">SHARE</h1>
             <br />
             <p
               style="text-align: justify; font-size: 22px; "
             >Distribute those shares however you want, among people or secure locations.</p>
           </div>
-          <div class="column is-5 is-offset-1">
-            <img src="/secret-share.png" />
+          <div class="column is-6 is-offset-1">
+            <img src="/secretshare3.png" style="width: 60%" />
           </div>
         </div>
       </section>
@@ -83,7 +109,10 @@
         class="section"
         style="background: linear-gradient(to right, #ff0066 0%, #000099 100%);"
       >
-        <div class="columns" style="padding-top:100px; display: flex; justify-content: center;">
+        <div
+          class="columns is-desktop is-vcentered"
+          style="padding-top:100px; justify-content: center;"
+        >
           <div class="column is-5">
             <img src="/relax.png" />
           </div>
@@ -105,39 +134,98 @@
 
       <section class="section" style="padding-top: 100px">
         <h1 class="align-text: center" style="font-size: 50px;">Trustworthy application</h1>
-        <div class="columns" style="margin-top: 100px;">
-          <div class="column is-3 is-offset-1">
-            <div class="box box-shadow">
+        <div
+          class="columns is-centered is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd"
+          style="margin-top: 100px;"
+        >
+          <div class="column is-3">
+            <div class="box" id="box-mod">
               <div class="media-center">
-                <img src="/no-wifi.png" />
+                <img src="/no-wifi.png" style="width: 60%" />
               </div>
-              <div class="media-content">
+              <div class="media-content text-center" style="font-size: 22px">
                 <br />This web dApp works only on offline mode to prevent any leak of information.
               </div>
             </div>
           </div>
           <div class="column is-3">
-            <div class="box box-shadow">
+            <div class="box" id="box-mod">
               <div class="media-center">
-                <img src="/shield.png" />
+                <img src="/shield.png" style="width: 60%" />
               </div>
-              <div class="media-content">
+              <div class="media-content text-center" style="font-size: 22px">
+                <br />
                 <br />Secure offline backup of recovery shares.
               </div>
             </div>
           </div>
           <div class="column is-3">
-            <div class="box box-shadow">
+            <div class="box" id="box-mod">
               <div class="media-center">
-                <img src="/thief.png" />
+                <img src="/thief.png" style="width: 60%" />
               </div>
-              <div class="media-content">
+              <div class="media-content text-center" style="font-size: 22px">
+                <br />
                 <br />Eliminated risk of theft or loss.
+                <br />
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      <section
+        class="section"
+        style="margin-top: 100px; background: linear-gradient(to right, #34153C 0%, #4D4875 100%); "
+      >
+        <h1 class="title is-1 text-left" style="color: white;">F.A.Q.</h1>
+        <div class="columns is-desktop is-vcentered">
+          <div class="column is-3 is-offset-1 text-left">
+            <h1
+              class="title is-3"
+              style="color: white;"
+            >What happens if some of the shares get lost or stolen?</h1>
+            <p
+              class="subtitle is-4"
+              style="color: lightgray;"
+            >Individual shares do not leak any information about the shared secret, as long as the number of compromised shares does not reach the required threshold.</p>
+            <br />
+            <br />
+            <h1
+              class="title is-3"
+              style="color: white;"
+            >What happens if I lose so many recovery shares?</h1>
+            <p
+              class="subtitle is-4"
+              style="color: lightgray;"
+            >If you can’t meet the required threshold, your seed / passphrase /pivate keys will become unrecoverable.</p>
+            <a
+              class="button is-rounded is-large"
+              href="https://en.scrypta.wiki/utilities/shamir-backup.html"
+              style="margin-top: 40px; margin-bottom: 40px; color: #4D4875;"
+            >
+              <strong>MORE INFO</strong>
+            </a>
+          </div>
+          <div class="column is-4 is-offset-3">
+            <img src="/faq.png" />
+          </div>
+        </div>
+      </section>
+
+      <footer
+        class="footer"
+        style="background: linear-gradient(to right, #34153C 0%, #4D4875 100%);"
+      >
+        <div class="content has-text-centered">
+          <p style="color: white;">
+            <a href="http://shamir.scryptachain.org/">Scrypta Shamir Backup</a> open-source project by
+            <a href="https://scrypta.foundation">
+              <strong>Scrypta Foundation</strong>
+            </a> .
+          </p>
+        </div>
+      </footer>
 
       <b-icon style="opacity:0" icon="home" size="is-medium"></b-icon>
     </div>
@@ -352,6 +440,32 @@ export default {
 </script>
 
 <style>
+
+@media screen and (max-width: 767px) {
+  .desksection {
+    display: none !important;
+  }
+  
+}
+
+@media screen and (min-width: 768px) {
+  .mobilesection {
+    display: none !important;
+  }
+  
+}
+
+#box-mod {
+  border-radius: 30px;
+  color: #004391;
+}
+
+#box-mod:hover {
+  border-radius: 30px;
+  background-color: #eff3fc;
+  color: #00397b;
+}
+
 #app {
   font-family: "Sen";
   -webkit-font-smoothing: antialiased;
