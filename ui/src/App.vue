@@ -64,7 +64,7 @@
         <p class="subtitle is-3">
           <i>
             Three simple step to create, share
-            <br />and keep safe your secrets.
+            <br />and keep your secrets safe.
           </i>
         </p>
       </section>
@@ -178,7 +178,12 @@
         class="section"
         style="margin-top: 100px; background: linear-gradient(to right, #34153C 0%, #4D4875 100%); "
       >
-        <h1 class="title is-1 text-left" style="color: white;">F.A.Q.</h1>
+        <div class="columns is-desktop is-vcentered">
+          <div class="column is-3 is-offset-1">
+            <h1 class="title is-1 text-left" style="color: white;">F.A.Q.</h1>
+          </div>
+        </div>
+
         <div class="columns is-desktop is-vcentered">
           <div class="column is-3 is-offset-1 text-left">
             <h1
@@ -440,19 +445,16 @@ export default {
 </script>
 
 <style>
-
 @media screen and (max-width: 767px) {
   .desksection {
     display: none !important;
   }
-  
 }
 
 @media screen and (min-width: 768px) {
   .mobilesection {
     display: none !important;
   }
-  
 }
 
 #box-mod {
